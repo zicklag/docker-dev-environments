@@ -1,0 +1,5 @@
+#!/bin/bash
+
+env_args="$(for e in $(env); do printf "%qe %q " - "$e"; done)"
+
+docker run -it --rm $env_args --device /dev/fuse --privileged -v $HOME:/home/$(whoami) --workdir $PWD $@
